@@ -9,7 +9,8 @@ Email: albert.sjaavaag@gmail.com
 Github repo link: https://github.com/albertsjavag/Markowitz_Portifolio_Optimization_UIO
 
 
-### Analytical solution for expected return
+## Analytical solution for expected return
+
 Let \( r_{i,t} \) denote the return of asset \( i \) at time \( t \).
 The expected return is defined as
 
