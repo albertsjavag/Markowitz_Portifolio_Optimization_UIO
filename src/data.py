@@ -156,3 +156,90 @@ def fetch_adj_close(
 
     return prices, report
 
+# ----- Clean data ------
+
+@dataclass(frozen=True)
+class CleanReport:
+    input_shape: Tuple[int, int]
+    output_shape: Tuple[int, int]
+    dropped_tickers: List[str]
+    dropped_rows: int
+    method: str
+    min_obs: int
+
+
+def clean_prices(
+    prices: pd.DataFrame,
+    method: str = "dropna",
+    min_obs: int = 252,
+    drop_invalid: bool = True,
+) -> Tuple[pd.DataFrame, CleanReport]:
+    """
+    Cleans data, making it ready for analysis. 
+
+    method:
+        "dropna": keeping only dates where all tickers have price
+
+        "ffill": Skip eventual  NaNs
+
+    min_obs:
+        252 days is ca. 1 year. Minimum amount of rows per ticker
+
+    drop_invalid:
+      Skips tickers which still has too little data. 
+    """
+    if prices is None or prices.empty:
+        report = CleanReport(
+            input_shape = (0, 0),
+            output_shape = (0, 0),
+            dropped_tickers = [],
+            dropped_rows = 0,
+            method = method,
+            min_obs = min_obs,
+        )
+        return pd.DataFrame(), report
+
+    df = prices.copy()
+    df = df.sort_index()
+
+    input_shape = df.shape
+
+    # removes duplicate dates.
+    df = df[~df.index.duplicated(keep="last")]
+
+    # clean stretegy: two possabilities. 
+    if method == "dropna":
+        before_rows = len(df)
+        df = df.dropna(axis=0, how="any")
+        dropped_rows = before_rows - len(df)
+    elif method == "ffill":
+        before_rows = len(df)
+        df = df.ffill().dropna(axis=0, how="any")
+        dropped_rows = before_rows - len(df)
+    else:
+        raise ValueError("Method has to be 'dropna' or 'ffill'")
+
+    dropped_tickers: List[str] = []
+
+    if drop_invalid:
+        # Skips tickers with too little data
+        too_few = [c for c in df.columns if df[c].notna().sum() < min_obs]
+        all_nan = [c for c in df.columns if df[c].isna().all()]
+        to_drop = sorted(list(set(too_few + all_nan)))
+
+        df = df.drop(columns=to_drop, errors="ignore")
+        dropped_tickers = to_drop
+
+        # secure no N/As in the rows. 
+        df = df.dropna(axis=0, how="any")
+
+    report = CleanReport(
+        input_shape=input_shape,
+        output_shape=df.shape,
+        dropped_tickers=dropped_tickers,
+        dropped_rows=dropped_rows,
+        method=method,
+        min_obs=min_obs,
+    )
+    return df, report
+
