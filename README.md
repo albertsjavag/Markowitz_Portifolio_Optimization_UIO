@@ -12,13 +12,13 @@ Github repo link: https://github.com/albertsjavag/Markowitz_Portifolio_Optimizat
 ## Analytical solution for expected return
 
 Let \( r_{i,t} \) denote the return of asset \( i \) at time \( t \).
-The expected return is defined as
+The expected return of asset \( i \) is defined as
 
 $$
 E[r_i]
 $$
 
-Since the true expectation is unknown, it is estimated from historical data as
+Since the true expectation is unknown, it is estimated from historical data by the sample mean
 
 $$
 \hat{E}[r_i]
@@ -27,7 +27,7 @@ $$
 \sum_{t=1}^{T} r_{i,t}
 $$
 
-For daily data, the annualized expected return is given by
+For daily return data, the annualized expected return is given by
 
 $$
 \mu_i
