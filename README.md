@@ -143,3 +143,7 @@ $$
 $$
 
 
+#### Note to self: 
+bash: conda activate markowitz
+
+
