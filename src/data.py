@@ -4,7 +4,7 @@ This file is for obtaining and cleaning data.
 We use yfinance to get open sourse stock data to later analyze
 
 standard usage:
-prices, report = fetch_adj_close(tickers, years=3)
+prices, report = fetch_prices(tickers, years=3)
 prices_clean, clean_report = clean_prices(prices, min_obs=252)
 """
 from __future__ import annotations
@@ -46,7 +46,7 @@ class FetchReport:
     interval: str
 
 
-def fetch_adj_close(
+def fetch_prices(
     tickers: Union[str, Iterable[str]],
     start: Optional[Union[str, date, datetime]] = None,
     end: Optional[Union[str, date, datetime]] = None,

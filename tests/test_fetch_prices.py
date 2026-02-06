@@ -9,11 +9,11 @@ Run with:
 
 import pandas as pd
 
-from src.data import fetch_adj_close
+from src.data import fetch_prices
 
 
 def test_fetch_prices_basic():
-    prices, report = fetch_adj_close(
+    prices, report = fetch_prices(
         ["AAPL", "MSFT"],
         years=1,
     )
