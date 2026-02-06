@@ -5,4 +5,4 @@ Calculates different risk metrics such as ideosyncratic risk,
 sharp ratio and volatitily.
 
 """
-from data import ohlcv
+from src.data import ohlcv
