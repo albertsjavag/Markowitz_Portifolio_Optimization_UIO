@@ -15,15 +15,15 @@ Let $r_{i,t}$ denote the return of asset $i$ at time $t$.
 The expected return is defined as
 
 $$
-E[r_i].
+E[r_i]
 $$
 
 Since $E[r_i]$ is unknown, we estimate it from historical data using the sample mean
 
 $$
-\bar r_i
+\bar{r}_i
 =
-\frac{1}{T}\sum_{t=1}^{T} r_{i,t}.
+\frac{1}{T}\sum_{t=1}^{T} r_{i,t}
 $$
 
 For daily data, the annualized expected return is
@@ -31,9 +31,9 @@ For daily data, the annualized expected return is
 $$
 \mu_i
 =
-252\,\bar r_i
+252\,\bar{r}_i
 =
-252\cdot\frac{1}{T}\sum_{t=1}^{T} r_{i,t}.
+252\cdot\frac{1}{T}\sum_{t=1}^{T} r_{i,t}
 $$
 
 
