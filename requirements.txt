@@ -1,2 +1,7 @@
 
 PIP install yfinance
+PIP install dataclasses
+PIP install datetime 
+PIP install typing
+PIP install numpy
+PIP install pandas
