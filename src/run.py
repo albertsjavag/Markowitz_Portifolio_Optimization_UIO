@@ -10,6 +10,9 @@ from src.returns import compute_returns, estimate_mean_returns, estimate_covaria
 from src.markowitz import minimum_variance_weights, max_sharpe_weights
 from src.indicators import portfolio_return, portfolio_volatility, sharpe_ratio
 from src.dashboard import show_dashboard
+from src.frontier import efficient_frontier
+from src.plotting import plot_frontier
+
 
 
 def main():
@@ -58,6 +61,9 @@ def main():
         rf=rf,
         years=years,
     )
+
+    frontier_df, _ = efficient_frontier(mu, cov, n_points=50)
+    plot_frontier(frontier_df)
 
 
 if __name__ == "__main__":
