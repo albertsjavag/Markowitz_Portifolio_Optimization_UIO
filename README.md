@@ -1,10 +1,10 @@
 # Markowitz_Portifolio_Optimization_UIO
-This is a repo used for portifolio optimization. 
+This is a repo used for portfolio optimization. 
 
 ## Author
-Albert Sjåvåg 
-Quantitative Finance | University of Oslo
-Email: albert.sjaavaag@gmail.com
+- Albert Sjåvåg 
+- BSc in Quantitative Finance | University of Oslo
+- Email: albert.sjaavaag@gmail.com
 
 Github repo link: https://github.com/albertsjavag/Markowitz_Portifolio_Optimization_UIO
 
