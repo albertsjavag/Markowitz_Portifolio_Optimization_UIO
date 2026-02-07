@@ -63,7 +63,7 @@ def main():
     )
 
     frontier_df, _ = efficient_frontier(mu, cov, n_points=50)
-    plot_frontier(frontier_df)
+    plot_frontier(frontier_df, mu=mu, cov=cov, title="Efficient Frontier")
 
 
 if __name__ == "__main__":
