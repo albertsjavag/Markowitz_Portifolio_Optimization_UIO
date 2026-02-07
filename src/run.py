@@ -17,10 +17,12 @@ from src.risk_profile import ask_risk_profile, risk_score, choose_strategy, blen
 
 
 def main():
-    tickers = ["EQNR.OL", "DNB.OL", "TEL.OL", "AAPL", "MSFT", "NVDA",
-            "BTC-USD"]
-    years = 3
-    rf = 0.0
+    tickers = [
+    "EQNR.OL", "DNB.OL", "TEL.OL", "KOG.OL",
+    "AAPL", "MSFT", "NVDA", "AMZN", "JPM"
+    ]
+    years = 5
+    rf = 0.04
 
     prices, fetch_report = fetch_prices(tickers, years=years, progress=False)
     prices, clean_report = clean_prices(prices, method="dropna", min_obs=252)
