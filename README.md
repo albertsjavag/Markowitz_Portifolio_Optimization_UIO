@@ -142,9 +142,110 @@ $$
     \sum_{i=1}^{N} w_i = 1
 $$
 
+## Risk profiling model
 
-#### Note to self: 
-bash: conda activate markowitz
+We use a simple **heuristic risk profiling model** to map user preferences to a portfolio choice
+along the efficient frontier.
+
+Let the user provide the following inputs:
+
+- Investment horizon (years): $T$
+- Loss tolerance (integer scale): $ L \in \{1,2,3,4,5\} $
+- Investment experience (integer scale): $ E \in \{1,2,3,4,5\} $
+
+---
+
+### Normalization
+
+The investment horizon is capped and normalized to the interval \([0,1]\):
+
+$$
+    \tilde{T}
+    =
+    \frac{\min(T, 10)}{10}
+$$
+
+This prevents excessively long horizons from dominating the score.
+
+---
+
+### Risk score
+
+The overall risk score is defined as a weighted sum:
+
+$$
+    S
+    =
+    4\,\tilde{T}
+    +
+    1.1\,L
+    +
+    0.6\,E
+$$
+
+The coefficients are design parameters reflecting the relative importance of
+time horizon, loss tolerance, and experience.
+
+The resulting score typically lies in the interval:
+
+$$
+    S \in [0, 10]
+$$
+
+---
+
+### Strategy selection
+
+The risk score is mapped to a portfolio strategy using fixed thresholds:
+
+$$
+    \text{Strategy}(S)
+    =
+    \begin{cases}
+    \text{Minimum Variance}, & S < 5.0 \\
+    \text{Balanced}, & 5.0 \le S < 7.5 \\
+    \text{Maximum Sharpe}, & S \ge 7.5
+    \end{cases}
+$$
+
+
+### Balanced portfolio
+
+For intermediate risk scores, a **balanced portfolio** is constructed as a convex
+combination of the minimum-variance portfolio $ w_{\min} $ and the maximum-Sharpe
+portfolio $ w_{\tan} $.
+
+Define the interpolation parameter:
+
+$$
+    \alpha
+    =
+    \frac{S - 5.0}{7.5 - 5.0}
+    \quad \text{with} \quad \alpha \in [0,1]
+$$
+
+The resulting portfolio weights are:
+
+$$
+    w
+    =
+    (1 - \alpha)\, w_{\min}
+    +
+    \alpha\, w_{\tan}
+$$
+
+Finally, the weights are normalized such that:
+
+$$
+    \sum_{i=1}^N w_i = 1
+$$
+
+---
+
+This risk profiling model is heuristic and rule-based.
+It does not rely on CAPM or utility maximization, but provides an intuitive
+and transparent method for selecting a portfolio along the efficient frontier.
+
 
 #### list of some tickers from yfinance:
 
@@ -185,5 +286,9 @@ industry
 Energy
 	•	Exxon Mobil: XOM
 	•	Chevron: CVX
+
+
+#### Note to self: 
+bash: conda activate markowitz
 
 
