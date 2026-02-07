@@ -150,14 +150,14 @@ along the efficient frontier.
 Let the user provide the following inputs:
 
 - Investment horizon (years): $T$
-- Loss tolerance (integer scale): $ L \in \{1,2,3,4,5\} $
-- Investment experience (integer scale): $ E \in \{1,2,3,4,5\} $
+- Loss tolerance (integer scale): $L \in \{1,2,3,4,5\}$
+- Investment experience (integer scale): $E \in \{1,2,3,4,5\}$
 
 ---
 
 ### Normalization
 
-The investment horizon is capped and normalized to the interval \([0,1]\):
+The investment horizon is capped and normalized to the interval $[0,1]$:
 
 $$
     \tilde{T}
@@ -176,12 +176,13 @@ The overall risk score is defined as a weighted sum:
 $$
     S
     =
-    4\,\tilde{T}
+    4 \cdot \tilde{T}
     +
-    1.1\,L
+    1.1 \cdot L
     +
-    0.6\,E
+    0.6 \cdot E
 $$
+
 
 The coefficients are design parameters reflecting the relative importance of
 time horizon, loss tolerance, and experience.
@@ -212,8 +213,8 @@ $$
 ### Balanced portfolio
 
 For intermediate risk scores, a **balanced portfolio** is constructed as a convex
-combination of the minimum-variance portfolio $ w_{\min} $ and the maximum-Sharpe
-portfolio $ w_{\tan} $.
+combination of the minimum-variance portfolio $w_{\min}$ and the maximum-Sharpe
+portfolio $w_{\tan}$.
 
 Define the interpolation parameter:
 
@@ -262,28 +263,20 @@ and transparent method for selecting a portfolio along the efficient frontier.
 	•	Orkla: ORK.OL
 	•	Gjensidige: GJF.OL
 	•	Storebrand: STB.OL
-
-tek:
 	•	Apple: AAPL
 	•	Microsoft: MSFT
 	•	Alphabet: GOOGL
 	•	Amazon: AMZN
 	•	NVIDIA: NVDA
 	•	Meta Platforms: META
-
-Finance: 
 	•	JPMorgan Chase: JPM
 	•	Bank of America: BAC
 	•	Goldman Sachs: GS
-
-industry
 	•	Tesla: TSLA
 	•	Coca-Cola: KO
 	•	Procter & Gamble: PG
 	•	Walmart: WMT
 	•	Johnson & Johnson: JNJ
-
-Energy
 	•	Exxon Mobil: XOM
 	•	Chevron: CVX
 
