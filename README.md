@@ -146,4 +146,44 @@ $$
 #### Note to self: 
 bash: conda activate markowitz
 
+#### list of some tickers from yfinance:
+
+	•	DNB: DNB.OL
+	•	Telenor: TEL.OL
+	•	Norsk Hydro: NHY.OL
+	•	Yara International: YAR.OL
+	•	Aker BP: AKRBP.OL
+	•	Subsea 7: SUBC.OL
+	•	Vår Energi: VAR.OL
+	•	Kongsberg Gruppen: KOG.OL
+	•	Mowi: MOWI.OL
+	•	SalMar: SALM.OL
+	•	Orkla: ORK.OL
+	•	Gjensidige: GJF.OL
+	•	Storebrand: STB.OL
+
+tek:
+	•	Apple: AAPL
+	•	Microsoft: MSFT
+	•	Alphabet: GOOGL
+	•	Amazon: AMZN
+	•	NVIDIA: NVDA
+	•	Meta Platforms: META
+
+Finance: 
+	•	JPMorgan Chase: JPM
+	•	Bank of America: BAC
+	•	Goldman Sachs: GS
+
+industry
+	•	Tesla: TSLA
+	•	Coca-Cola: KO
+	•	Procter & Gamble: PG
+	•	Walmart: WMT
+	•	Johnson & Johnson: JNJ
+
+Energy
+	•	Exxon Mobil: XOM
+	•	Chevron: CVX
+
 
