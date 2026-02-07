@@ -12,12 +12,13 @@ from src.indicators import portfolio_return, portfolio_volatility, sharpe_ratio
 from src.dashboard import show_dashboard
 from src.frontier import efficient_frontier
 from src.plotting import plot_frontier
+from src.risk_profile import ask_risk_profile, risk_score, choose_strategy, blend_weights
 
 
 
 def main():
     tickers = ["EQNR.OL", "DNB.OL", "TEL.OL", "AAPL", "MSFT", "NVDA",
-               "SUBC.OL", "BTC-USD"]
+            "BTC-USD"]
     years = 3
     rf = 0.0
 
@@ -47,6 +48,37 @@ def main():
     tan_vol = portfolio_volatility(w_tan.values, cov)
     tan_sr = sharpe_ratio(w_tan.values, mu, cov, rf=rf)
 
+    # Risk profiling
+    profile = ask_risk_profile()
+    score = risk_score(profile)
+    decision = choose_strategy(score)
+
+    if decision.strategy == "min_variance":
+        w_rec = w_min
+    elif decision.strategy == "max_sharpe":
+        w_rec = w_tan
+    else:
+        # balanced: alpha in [0,1] depending on score in [5.0, 7.5]
+        alpha = (score - 5.0) / (7.5 - 5.0)
+        w_rec = blend_weights(w_min, w_tan, alpha=alpha)
+
+    rec_ret = portfolio_return(w_rec.values, mu)
+    rec_vol = portfolio_volatility(w_rec.values, cov)
+    rec_sr = sharpe_ratio(w_rec.values, mu, cov, rf=rf)
+
+    risk_info = {
+        "time_horizon_years": profile.time_horizon_years,
+        "loss_tolerance": profile.loss_tolerance,
+        "experience": profile.experience,
+        "score": score,
+        "strategy": decision.strategy,
+        "explanation": decision.explanation,
+        "rec_ret": rec_ret,
+        "rec_vol": rec_vol,
+        "rec_sr": rec_sr,
+        "w_rec": w_rec,
+    }
+
     # Pretty output
     show_dashboard(
         tickers=list(prices.columns),
@@ -61,6 +93,7 @@ def main():
         tan_sr=tan_sr,
         rf=rf,
         years=years,
+        risk_info=risk_info
     )
 
     frontier_df, _ = efficient_frontier(mu, cov, n_points=50)
