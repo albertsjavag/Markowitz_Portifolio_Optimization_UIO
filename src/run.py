@@ -16,7 +16,8 @@ from src.plotting import plot_frontier
 
 
 def main():
-    tickers = ["EQNR.OL", "DNB.OL", "TEL.OL", "AAPL", "MSFT"]
+    tickers = ["EQNR.OL", "DNB.OL", "TEL.OL", "AAPL", "MSFT", "NVDA",
+               "SUBC.OL", "BTC-USD"]
     years = 3
     rf = 0.0
 
@@ -63,7 +64,15 @@ def main():
     )
 
     frontier_df, _ = efficient_frontier(mu, cov, n_points=50)
-    plot_frontier(frontier_df, mu=mu, cov=cov, title="Efficient Frontier")
+    plot_frontier(
+        frontier_df,
+        mu=mu,
+        cov=cov,
+        min_var=(min_vol, min_ret),
+        max_sharpe=(tan_vol, tan_ret),
+        rf=rf,
+        title="Efficient Frontier",
+    )
 
 
 if __name__ == "__main__":
