@@ -17,14 +17,9 @@ from src.risk_profile import ask_risk_profile, risk_score, choose_strategy, blen
 
 
 def main():
-    tickers = [
-    "EQNR.OL", "DNB.OL", "TEL.OL", "KOG.OL",
-    "AAPL", "MSFT", "NVDA", "AMZN", "JPM"
     tickers = ["HEX.OL", "HAUTO.OL", "MPCC.OL", 
                "ENSU.Ol", "NOD.Ol", "V"
     ]
-    years = 5
-    rf = 0.04
     years = 3
     rf = 0.00
 
