@@ -20,9 +20,13 @@ def main():
     tickers = [
     "EQNR.OL", "DNB.OL", "TEL.OL", "KOG.OL",
     "AAPL", "MSFT", "NVDA", "AMZN", "JPM"
+    tickers = ["HEX.OL", "HAUTO.OL", "MPCC.OL", 
+               "ENSU.Ol", "NOD.Ol", "V"
     ]
     years = 5
     rf = 0.04
+    years = 3
+    rf = 0.00
 
     prices, fetch_report = fetch_prices(tickers, years=years, progress=False)
     prices, clean_report = clean_prices(prices, method="dropna", min_obs=252)
