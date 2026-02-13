@@ -3,7 +3,6 @@ This is a repo used for portfolio optimization.
 
 ![Demo](images/demo.gif)
 
-
 ## Author
 - Albert Sjåvåg 
 - BSc in Quantitative Finance | University of Oslo
