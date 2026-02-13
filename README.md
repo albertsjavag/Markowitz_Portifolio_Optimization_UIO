@@ -1,5 +1,10 @@
 # Markowitz_Portifolio_Optimization_UIO
-This is a repo used for portfolio optimization. 
+This is a repo used for portfolio optimization. Using a rule based model to make a risk profile. Based on that the user gets a suggested strategy. 
+
+Input: 
+- Tickers from yfinance
+- How many years of data to be used
+- risk free rent
 
 ## Author
 - Albert Sjåvåg 
@@ -99,7 +104,7 @@ The variance of the portfolio return is given by
 $$
     \mathrm{Var}(r_p)
     =
-    \mathbf{w}^\top \boldsymbol{\Sigma}\,\mathbf{w}
+    \mathbf{w}^\top \boldsymbol{\Sigma}\\mathbf{w}
 $$
 
 The portfolio volatility (standard deviation) is therefore
@@ -107,7 +112,7 @@ The portfolio volatility (standard deviation) is therefore
 $$
     \sigma_p
     =
-    \sqrt{\mathbf{w}^\top \boldsymbol{\Sigma}\,\mathbf{w}}
+    \sqrt{\mathbf{w}^\top \boldsymbol{\Sigma}\\mathbf{w}}
 $$
 
 ## Sharpe ratio
@@ -121,7 +126,7 @@ $$
     \frac{E[r_p] - r_f}{\sigma_p}
     =
     \frac{\mathbf{w}^\top \boldsymbol{\mu} - r_f}
-    {\sqrt{\mathbf{w}^\top \boldsymbol{\Sigma}\,\mathbf{w}}}
+    {\sqrt{\mathbf{w}^\top \boldsymbol{\Sigma}\\mathbf{w}}}
 $$
 
 ## Markowitz mean–variance optimization
@@ -131,7 +136,7 @@ the mean–variance optimization problem can be written as
 
 $$
     \min_{\mathbf{w}}
-    \ \mathbf{w}^\top \boldsymbol{\Sigma}\,\mathbf{w}
+    \ \mathbf{w}^\top \boldsymbol{\Sigma}\\mathbf{w}
     \quad \text{subject to} \quad
     \mathbf{w}^\top \boldsymbol{\mu} = \mu_{\text{target}},
     \ \sum_{i=1}^{N} w_i = 1
