@@ -17,11 +17,11 @@ from src.risk_profile import ask_risk_profile, risk_score, choose_strategy, blen
 
 
 def main():
-    tickers = ["HEX.OL", "HAUTO.OL", "MPCC.OL", 
-               "ENSU.Ol", "NOD.Ol", "V"
+    tickers = ["HEX.OL", "KOG.OL", "V", "DNB.OL", 
+               "TSLA", "GS", "BTC-USD"
     ]
-    years = 3
-    rf = 0.00
+    years = 5
+    rf = 0.04
 
     prices, fetch_report = fetch_prices(tickers, years=years, progress=False)
     prices, clean_report = clean_prices(prices, method="dropna", min_obs=252)
